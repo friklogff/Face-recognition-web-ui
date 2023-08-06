@@ -618,7 +618,6 @@ class Retinaface(object):
         # -----------------------------------------------#
         #   人脸特征比对-结束
         # -----------------------------------------------#
-        final_name=""
         for i, b in enumerate(boxes_conf_landms):
             text = "{:.4f}".format(b[4])
             b = list(map(int, b))
@@ -648,8 +647,7 @@ class Retinaface(object):
             #   如果不是必须，可以换成cv2只显示英文。
             # --------------------------------------------------------------#
             old_image = cv2ImgAddText(old_image, name, b[0] + 5, b[3] - 25)
-            final_name = name
-        return old_image,final_name
+        return old_image
 
 
     def get_FPS(self, image, test_interval):

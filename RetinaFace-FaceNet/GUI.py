@@ -51,8 +51,6 @@ def live_detect_realtime(video_path=None, video_save_path='output/result.mp4', v
     detector = LiveVideoDetector(video_path, "", video_fps)
     while True:
         flag = detector.get_blink_counter()
-        fname = detector.get_fname()
-        print(flag, fname)
         frame = detector.process_frame()
         if frame is None:
             break
@@ -61,11 +59,10 @@ def live_detect_realtime(video_path=None, video_save_path='output/result.mp4', v
             break
         if flag == 2:
             cv2.imwrite("last_frame.png", frame)
-            print(fname)
             break
     detector.release()
     cv2.destroyAllWindows()
-    return fname, "last_frame.png"
+    return "last_frame.png"
 
 
 def detect_image_change(image=None):
@@ -156,7 +153,7 @@ with gr.Blocks() as demo:
     with gr.Tab("实时人脸识别plus（使用前先禁用浏览器摄像头权限，避免摄像头冲突，点弹出的视频框英文输入法按q退出）"):
         realtime_button = gr.Button("Start")
         # realtime_output = gr.Video(label="Output Video")
-        live_output = [gr.components.Textbox(label="output"),
+        live_output = [
                        gr.Image(label="Output Image")
                        ]
         realtime_button.click(live_detect_realtime, outputs=live_output)

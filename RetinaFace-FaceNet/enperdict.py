@@ -125,7 +125,7 @@ class LiveVideoDetector:
 
         frame = cv2.cvtColor(frame, cv2.COLOR_BGR2RGB)
         # 进行检测
-        old_image, self.fname = self.retinaface.live_detect_image(frame, self.flag)
+        old_image = self.retinaface.live_detect_image(frame, self.flag)
         frame = np.array(old_image)
         # RGBtoBGR满足opencv显示格式
         frame = cv2.cvtColor(frame, cv2.COLOR_RGB2BGR)
@@ -148,8 +148,6 @@ class LiveVideoDetector:
     def get_blink_counter(self):
         return self.blink_counter
 
-    def get_fname(self):
-        return self.fname
 
 
 
@@ -202,33 +200,3 @@ class VideoDetector:
 
 
 
-# if __name__ == "__main__":
-#     # retinaface = Retinaface()
-#     mode = "video"
-#     temp_img_path = "output/result.jpg"
-#     video_path = "input/1.mp4"
-#     # video_path = 0
-#     video_save_path = "output/1.mp4"
-#     video_fps = 25.0
-#     test_interval = 100
-#     dir_origin_path = "img/"
-#     dir_save_path = "img_out/"
-#     if mode == "predict":
-#         while True:
-#             img = input('Input image filename:')
-#             detect_image(img)
-#     elif mode == "video":
-#         # detect_video(video_path, video_save_path, video_fps)
-#         detector = VideoDetector(video_path, video_save_path, video_fps)
-#         while True:
-#             frame = detector.process_frame()
-#             if frame is None:
-#                 break
-#             cv2.imshow("frame", frame)
-#             if cv2.waitKey(1) & 0xFF == ord('q'):
-#                 break
-#
-#         detector.release()
-#         cv2.destroyAllWindows()
-#     else:
-#         raise AssertionError("Please specify the correct mode: 'predict', 'video', 'fps' or 'dir_predict'.")
