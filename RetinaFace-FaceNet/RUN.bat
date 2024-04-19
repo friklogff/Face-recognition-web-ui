@@ -28,12 +28,12 @@ pip install torch-1.7.1+cu110-cp38-cp38-win_amd64.whl
 
 pip install torch==1.7.1+cu110 torchvision==0.8.2+cu110 torchaudio==0.7.2 -f https://download.pytorch.org/whl/torch_stable.html
 pip install -i https://mirrors.aliyun.com/pypi/simple/ tqdm
-pip install -i https://mirrors.aliyun.com/pypi/simple/ gradio
 pip install -i https://mirrors.aliyun.com/pypi/simple/ scipy
 pip install -i https://mirrors.aliyun.com/pypi/simple/ matplotlib
 numpy==1.21.2
 pip install urllib3==1.25.11
-
+pip install --upgrade httpx     
+pip install -i https://mirrors.aliyun.com/pypi/simple/ gradio==3.50.2
 
 rem 检查python是否安装 
 python -V >nul 2>&1
